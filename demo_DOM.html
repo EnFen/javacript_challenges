@@ -1,0 +1,117 @@
+<!-- IN CLASS EXERCISE -->
+
+<!-- <ul id="hobby-list">
+    <li class="hobby">Playing the banjo</li>
+    <li class="hobby">Paddleboarding</li>
+</ul>
+
+<script>
+    // By Id
+    let hobbiesList = document.getElementById('hobby-list')
+
+    // By Tag Name
+    let hobbies = document.getElementsByTagName('li')
+
+    // By Class Name
+    let alsoHobbies = document.getElementsByClassName('hobby')
+
+    // By CSS Query
+    let firstHobby = document.querySelector('ul li.hobby')
+    let againAlsoHobbies = document.querySelectorAll('ul li.hobby')
+    console.dir(any)
+</script> -->
+
+<!-- AFTERNOON EXERCISE #1 -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+<!-- </head>
+
+<body>
+    <h1>My Book List</h1>
+
+
+    <script>
+        var books = [{
+            title: 'The Design of EveryDay Things',
+            author: 'Don Norman',
+            img_url: 'https://images-na.ssl-images-amazon.com/images/I/410RTQezHYL._SX326_BO1,204,203,200_.jpg',
+            alreadyRead: false
+        }, {
+            title: 'The Most Human Human',
+            author: 'Brian Christian',
+            img_url: 'https://images-na.ssl-images-amazon.com/images/I/41m1rQjm5tL._SX322_BO1,204,203,200_.jpg',
+            alreadyRead: true
+        }];
+
+        let ul = document.createElement('ul')
+        for (let book of books) {
+            let li = document.createElement('li')
+            let newBook = document.createTextNode(book.title + ' by ' + book.author)
+            let img = document.createElement('img')
+            img.src = book.img_url
+            img.setAttribute('width', '200px')
+            li.appendChild(newBook)
+            li.appendChild(img)
+            if (book.alreadyRead == true) {
+                li.style.color = 'red'
+            }
+            ul.appendChild(li)
+        }
+
+        document.body.appendChild(ul)
+    </script>
+</body>
+
+</html> -->
+
+<!-- AFTERNOON EXERCISE #2 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>About Me</title>
+    <style>
+        .list-item {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>About Me</h1>
+
+    <ul>
+        <li>Nickname: <span id="nickname"></span>
+        <li>Favorites: <span id="favorites"></span>
+        <li>Hometown: <span id="hometown"></span>
+    </ul>
+
+    <script>
+        document.body.style.fontFamily = 'Arial, sans-serif'
+        document.getElementById('nickname').innerHTML = 'Nate-dawg'
+        document.getElementById('favorites').innerHTML = 'Trivia, Ping-pong, Gaming'
+        document.getElementById('hometown').innerHTML = 'Brisbane'
+        liList = document.querySelectorAll('li')
+
+        for (let li of liList) {
+            li.className = 'list-item'
+        }
+
+        let img = document.createElement('img')
+        img.src = "C:/Users/natha/OneDrive/Pictures/profile_pic.jpg"
+        document.body.appendChild(img)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+
+    <!-- <button id="myBtn">Click Me!</button>
+    <br>
+    <img id="kitten" src="http://placekitten.com/g/200/300" alt="kitten">
+    <br>
+    <a id="myLink" href="https://www.coderacademy.edu.au">Coder Academy</a>
+    <br>
+    <a href="http://coderacademy.edu.au/" id="caLink">Coder Academy</a>
+    <br>
+    <form id="userForm">
+        <label for="name">First Name:</label>
+        <input type="text" id="firstName" />
+        <input type="radio" name="married" value="Yes" checked /> Yes
+        <input type="radio" name="married" value="No" /> No
+        <input type="submit" id="submitBtn" value="Submit" />
+    </form> -->
+
+    <form id="square-form" action="">
+        <label for="">Enter a number</label>
+        <input id="square-field" type="text" name="square-field">
+        <input type="submit" value="Square it!">
+    </form>
+
+    <div id="square-result"></div>
+
+
+
+</body>
+<script>
+    // function sayHi(event) {
+    //     // alert('Hi!')
+    //     console.log(event)
+    // }
+
+    // let button = document.getElementById("myBtn")
+
+    // // button.addEventListener("click", (event) => {
+    // //     alert("Hi!")
+    // // })
+
+    // let kitten = document.getElementById("kitten")
+
+    // kitten.addEventListener('mouseover', (event) => {
+    //     console.log('mouse found kitten')
+    // })
+
+    // kitten.addEventListener('mouseout', (event) => {
+    //     console.log('mouse ran from kitten')
+    // })
+
+    // let link = document.getElementById("myLink")
+
+    // link.addEventListener("click", function (event) {
+    //     event.preventDefault()
+    //     console.log('stopped link!!')
+    // })
+
+    // button.addEventListener("click", function (event) {
+    //     // btn = event.currentTarget
+
+    //     this.style.backgroundColor = 'red'
+    //     this.innerHTML = 'Clicked!'
+    // })
+
+    // let caLink = document.getElementById('caLink')
+
+    // caLink.addEventListener('click', function (event) {
+    //     event.preventDefault()
+    //     console.log(event)
+    //     document.body.innerHTML = ('<p>Error redirecting to coder Academy!</p>')
+    // })
+
+    let squareField = document.getElementById('square-field')
+
+    let squareResult = document.getElementById('square-result')
+
+    let submit = document.querySelector('#square-form input[type="submit"]')
+
+    submit.addEventListener('click', function (event) {
+        event.preventDefault()
+        let squareValue = parseInt(squareField.value)
+
+        let result = squareResult.innerHTML = squareValue ** 2
+        squareField.value = result
+    })
+</script>
+
+</html>

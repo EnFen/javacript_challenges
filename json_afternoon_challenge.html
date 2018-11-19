@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JSON Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+
+    <div class="weather">
+
+    </div>
+
+</body>
+
+<script type="text/javascript" src="weather.json"></script>
+
+<script>
+    // STANDARD CHALLENGE
+
+    let weatherParse = JSON.parse(weather)
+
+    console.log(updateTime(weatherParse.query.results.channel.astronomy.sunrise))
+    console.log(updateTime(weatherParse.query.results.channel.astronomy.sunset))
+
+    for (item of weatherParse.query.results.channel.item.forecast) {
+        console.log(
+            item.code + '\n' +
+            item.date + '\n' +
+            item.day + '\n' +
+            fahrenheitToCelsius(item.high) + ' &deg; ' + 'C' + '\n' +
+            fahrenheitToCelsius(item.low) + ' &deg; ' + 'C' + '\n' +
+            item.text + '\n'
+        )
+    }
+
+    function fahrenheitToCelsius(temp) {
+        return ((temp - 32) * 5 / 9).toFixed(0)
+    }
+
+    // BEAST MODE
+
+    function updateTime(time) {
+        time = time.replace(' ', '').toUpperCase()
+        trailingZero = time.indexOf(':') + 2
+        if ((time.length - time.indexOf(':')) < 5) {
+            return time.slice(0, trailingZero) + '0' + time.slice(trailingZero)
+        }
+        return time
+    }
+
+    // BEAST MODE++
+
+    function requestJSONP(url) {
+        // create script with passed in URL
+        var script = document.createElement('script')
+        script.src = url
+
+        // insert script tag into the DOM (append to <head> )
+        var head = document.getElementsByTagName('head')[0]
+        head.insertBefore(script, head.childNodes.last)
+
+        // after the script is loaded (and executed), remove it
+        script.onload = function () {
+            this.remove()
+        }
+    }
+
+    function processWeather(data) {
+        // do something with weather data
+
+        // for example, print out the temperature
+        let channel = data.query.results.channel
+        document.querySelector('.weather').innerHTML =
+            'The temperature in ' +
+            channel.location.city + ', ' +
+            channel.location.country + ' is ' +
+            fahrenheitToCelsius(channel.item.condition.temp) + ' &deg;' +
+            'C'
+    }
+
+    // issue the request string via JSONP
+    let url =
+        "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22brisbane%2Caustralia%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&format=json&callback=processWeather"
+
+    // call JSONP 
+    requestJSONP(url)
+</script>
+
+</html>

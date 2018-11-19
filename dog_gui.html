@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dog GUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+    <button id="new-dog">New Dog</button>
+    <hr>
+    <h2>Dogs (<span id="dog-count">0</span>):</h2>
+    <ul id="dogs"></ul>
+    <script>
+        const dogs = [];
+        class Dog {
+            constructor(name, location) {
+                this.name = name;
+                this.location = location;
+                this.walks = [];
+            }
+            walk(location, distance) {
+                this.walks.push(new Walk(location, distance))
+            }
+        }
+
+        class Walk {
+            constructor(location, distance) {
+                this.location = location;
+                this.distance = distance;
+                this.date = new Date;
+            }
+        }
+
+        function updateDogs() {
+            // Empty the list
+            const dogList = document.querySelector('#dogs');
+            dogList.innerHTML = '';
+
+            dogCountSpan.innerHTML = dogs.length;
+
+            // Build the list back up
+            dogs.forEach(dog => {
+                const dogListItem = document.createElement('li');
+                dogListItem.setAttribute('id', `walk-item-${dogs.indexOf(dog) + 1}`);
+                dogListItem.innerHTML = dog.name + " (" + dog.location + ")" +
+                    ` <button class="new-walk">New Walk</button>`;
+                dogList.appendChild(dogListItem);
+            })
+        }
+
+        const newDogButton = document.querySelector('#new-dog');
+        const dogList = document.querySelector('#dogs');
+        const dogCountSpan = document.querySelector('#dog-count');
+
+        newDogButton.onclick = function () {
+            const name = prompt("New dog's name:");
+            const location = prompt(name + "'s location:");
+
+            dogs.push(new Dog(name, location));
+            // console.log(dogs)
+            updateDogs();
+        };
+
+        // const newWalkButton = document.querySelectorAll('.new-walk');
+
+        dogList.addEventListener('click', function (event) {
+            if (event.target.classList.contains('new-walk')) {
+                let index = getIndex(event.target.parentElement)
+                let dog = dogs[index]
+                const distance = prompt("Distance walked:")
+                const location = prompt(dog.name + "'s new location:")
+                dog.walk(location, distance)
+                dog.location = location
+                console.log(dog)
+                // display using a show walks method, including total distance 
+            }
+        })
+
+        function getIndex(node) {
+            let children = node.parentElement.children
+            let length = children.length
+
+            for (i = 0; i < length; i++) {
+                if (node === children[i]) {
+                    break
+                }
+            }
+
+            return i
+        }
+    </script>
+</body>
+
+</html>

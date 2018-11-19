@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Video Watcher</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="span12">
+                <h2 class="page-header">Best Videos Ever ❤</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span3">
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=TddFnTB_7IM">Trip through the 80s</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=epUk3T2Kfno">Otters Holding Hands</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=il2IrgFHfsg">The Ooooh Cat</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="youtube.js"></script>
+    <script>
+        // WITHOUT JQUERY
+        // let links = document.querySelectorAll('a')
+        // Array.from(links).forEach(element => {
+        //     let url = element.getAttribute('href')
+        //     let thumbnail = youtube.generateThumbnailUrl(url)
+        //     let img = document.createElement('img')
+        //     img.setAttribute('src', thumbnail)
+        //     element.appendChild(img)
+        // });
+
+        // WITH JQUERY
+        let $links = $('a')
+        for (link of $links) {
+            let $link = $(link)
+            let $img = $('<img>').attr('src', youtube.generateThumbnailUrl($link.attr('href')))
+            $link.append($img)
+        }
+    </script>
+</body>
+
+</html>
