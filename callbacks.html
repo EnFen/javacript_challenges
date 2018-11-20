@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Callbacks & JSON</title>
+
+</head>
+
+<body>
+
+  <p>Empty HTML doc :) Some JS is running. Save me to your machine.</p>
+
+  <script>
+    getRandomUser = () => {
+      // This function uses AJAX to hit the random user API.
+      // More info: https://randomuser.me
+
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener('error', transferFailed)
+
+      xhr.open('GET', 'https://randomuser.me/api/', true);
+      xhr.onload = function () {
+        /* You'll start here */
+        parseRandomUser(xhr.response)
+      };
+
+      xhr.send();
+    }
+
+    function parseRandomUser(user) {
+      let randomUser = JSON.parse(user)
+      let randomUserDetails = randomUser.results[0]
+      console.log(randomUserDetails)
+    }
+
+    function transferFailed(event) {
+      console.log('An error occurred')
+      return
+    }
+
+    getRandomUser(); // Execute the function
+  </script>
+</body>
+
+</html>

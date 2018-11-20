@@ -37,21 +37,20 @@ function totalTasks() {
 
 // calculates percentage completion of todo tasks
 function calculateProgress() {
-    let completedItems = Array.from($taskList.children('li')).filter(task => task.classList.contains('done')).length
+    let completedItems = Array.from($taskList.children('li')).filter(task => $(task).hasClass('done')).length
     return completedItems / totalTasks() * 100
 }
 
 // add toggle for completed items
 function toggleDone(event) {
-    event.target.classList.toggle('done')
+    $(event.target).toggleClass('done')
 
     updateView()
 }
 
 function deleteListItem(event) {
-    if (event.target.classList.contains('delete')) {
-        let li = event.target.parentElement
-        li.remove()
+    if ($(event.target).hasClass('delete')) {
+        $(event.target).parent().remove()
 
         updateView()
     }
