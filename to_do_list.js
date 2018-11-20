@@ -25,10 +25,8 @@ function addListtask(event) {
 
     // reset text field
     $('#new-task').val("")
-    // update total tasks
-    $('#task-number').html(totalTasks())
-    // update progress bar    
-    $('.progress-bar').css('width', calculateProgress() + '%')
+
+    updateView()
 
 }
 
@@ -46,19 +44,24 @@ function calculateProgress() {
 // add toggle for completed items
 function toggleDone(event) {
     event.target.classList.toggle('done')
-    // update progress bar
-    $('.progress-bar').css('width', calculateProgress() + '%')
+
+    updateView()
 }
 
 function deleteListItem(event) {
     if (event.target.classList.contains('delete')) {
         let li = event.target.parentElement
         li.remove()
-        // update total tasks
-        $('#task-number').html(totalTasks())
-        // update progress bar
-        $('.progress-bar').css('width', calculateProgress() + '%')
+
+        updateView()
     }
+}
+
+function updateView() {
+    // update total tasks
+    $('#task-number').html(totalTasks())
+    // update progress bar
+    $('.progress-bar').css('width', calculateProgress() + '%')
 }
 
 
