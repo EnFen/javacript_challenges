@@ -7,7 +7,7 @@ let $taskList = $('#task-list')
 $('#task-number').html(totalTasks())
 
 // add event for form submit
-$('#task-form').submit(addListtask)
+$('#task-form').on('submit', addListtask)
 
 // create event for adding tasks
 function addListtask(event) {
@@ -15,13 +15,13 @@ function addListtask(event) {
     let $newtask = $('#new-task').val()
     let $li = $('<li>' + $newtask + '</li>')
     $taskList.append($li)
-    $li.click(toggleDone)
+    $li.on('click', toggleDone)
 
 
     // add delete button
     let $deleteButton = $('<button class="delete">X</button>')
     $li.append($deleteButton)
-    $li.click(deleteListItem)
+    $li.on('click', deleteListItem)
 
     // reset text field
     $('#new-task').val("")

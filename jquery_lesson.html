@@ -5,6 +5,32 @@
     <meta charset="utf-8">
     <title>Video Watcher</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="slick/slick.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" /> -->
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+    <!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
+
+    <style>
+        body {
+            background-color: #333333;
+        }
+
+        .container { 
+            width: 80%;
+        }
+
+        .span3 {
+            width: 20%;
+        }
+
+        .container, .span3, ul, li {
+        margin: 0 auto;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -19,34 +45,67 @@
 
         <div class="row">
             <div class="span3">
-                <ul>
+                <ul class="carousel">
                     <li><a href="https://www.youtube.com/watch?v=TddFnTB_7IM">Trip through the 80s</a></li>
                     <li><a href="https://www.youtube.com/watch?v=epUk3T2Kfno">Otters Holding Hands</a></li>
                     <li><a href="https://www.youtube.com/watch?v=il2IrgFHfsg">The Ooooh Cat</a></li>
                 </ul>
             </div>
         </div>
+
+        <div class="span9" id="video-player">
+
+        </div>
     </div>
+
+
 
     <script type="text/javascript" src="youtube.js"></script>
     <script>
-        // WITHOUT JQUERY
-        // let links = document.querySelectorAll('a')
-        // Array.from(links).forEach(element => {
-        //     let url = element.getAttribute('href')
-        //     let thumbnail = youtube.generateThumbnailUrl(url)
-        //     let img = document.createElement('img')
-        //     img.setAttribute('src', thumbnail)
-        //     element.appendChild(img)
-        // });
+        $('document').ready(function () {
+            // WITHOUT JQUERY
+            // let links = document.querySelectorAll('a')
+            // Array.from(links).forEach(element => {
+            //     let url = element.getAttribute('href')
+            //     let thumbnail = youtube.generateThumbnailUrl(url)
+            //     let img = document.createElement('img')
+            //     img.setAttribute('src', thumbnail)
+            //     element.appendChild(img)
+            // });
+            $('.carousel').slick({
+                slidesToShow: 1,
+            })
 
-        // WITH JQUERY
-        let $links = $('a')
-        for (link of $links) {
-            let $link = $(link)
-            let $img = $('<img>').attr('src', youtube.generateThumbnailUrl($link.attr('href')))
-            $link.append($img)
-        }
+            function thumbnailify(link) {
+                let $link = $(link)
+                let $img = $('<img>').attr('src', youtube.generateThumbnailUrl($link.attr('href')))
+                $link.append($img)
+                $link.on('click', displayThumbnail)
+            }
+
+            // WITH JQUERY
+            let $links = $('a')
+            for (link of $links) {
+                thumbnailify(link)
+            }
+
+            function displayThumbnail(event) {
+                event.preventDefault()
+                let embed = youtube.generateEmbedUrl($(event.target).attr('href'))
+                let $videoPlayer = $('#video-player').hide()
+                $videoPlayer.html('')
+                let $iframe = $('<iframe>')
+                $iframe.attr({
+                    width: 560,
+                    height: 315,
+                    src: embed,
+                    frameborder: 0,
+                    allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
+                    allowfullscreen: true
+                })
+                $videoPlayer.append($iframe).fadeIn(3000)
+            }
+        })
     </script>
 </body>
 
