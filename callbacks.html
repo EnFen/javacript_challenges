@@ -12,34 +12,67 @@
   <p>Empty HTML doc :) Some JS is running. Save me to your machine.</p>
 
   <script>
-    getRandomUser = () => {
-      // This function uses AJAX to hit the random user API.
-      // More info: https://randomuser.me
+    let getUser = new Promise(function (resolve, reject) {
+      fetch('https://randomuser.me/api')
+        .then(
+          (res) => resolve(res.json()),
+          () => reject('Unable to fetch!')
+        )
+    })
 
-      var xhr = new XMLHttpRequest();
-      xhr.addEventListener('error', transferFailed)
+    getUser.then(function (res) {
+      console.log('Success: ', res.results[0])
+    }, function (err) {
+      console.error(`Error: ${err}`)
+    })
 
-      xhr.open('GET', 'https://randomuser.me/api/', true);
-      xhr.onload = function () {
-        /* You'll start here */
-        parseRandomUser(xhr.response)
-      };
+    // fetch('https://randomuser.me/api')
+    //   .then(
+    //     (res) => {
+    //       console.log(res)
+    //       return res.json()
+    //     },
+    //     () => console.error('Unable to fetch!')
+    //   )
+    //   .then((json) => console.log(json))
 
-      xhr.send();
-    }
+    // getRandomUser = (callback) => {
+    //   // This function uses AJAX to hit the random user API.
+    //   // More info: https://randomuser.me
 
-    function parseRandomUser(user) {
-      let randomUser = JSON.parse(user)
-      let randomUserDetails = randomUser.results[0]
-      console.log(randomUserDetails)
-    }
+    //   var xhr = new XMLHttpRequest();
+    //   // xhr.addEventListener('error', transferFailed)
 
-    function transferFailed(event) {
-      console.log('An error occurred')
-      return
-    }
+    //   xhr.open('GET', 'https://randomuser.me/api/', true);
+    //   xhr.onload = function () {
+    //     /* You'll start here */
+    //     callback(null, xhr.response)
+    //   };
 
-    getRandomUser(); // Execute the function
+    //   xhr.onerror = function () {
+    //     callback('Failed!')
+    //   }
+
+    //   xhr.send();
+    // }
+
+    // function parseRandomUser(err, json) {
+    //   if (err) {
+    //     console.error(err)
+    //     return
+    //   } else {
+    //     let randomUser = JSON.parse(json)
+    //     let randomUserDetails = randomUser.results[0]
+    //     console.log(randomUserDetails)
+    //   }
+    // }
+
+    // // function transferFailed(event) {
+    // //   console.log('An error occurred')
+    // //   return
+    // // }
+
+    // getRandomUser(parseRandomUser); // Execute the function
   </script>
 </body>
 

@@ -63,6 +63,8 @@ function updateView() {
     $('.progress-bar').css('width', calculateProgress() + '%')
 }
 
+// document.cookie = encodeURIComponent('name=John Doe')
+document.cookie = 'name=John Doe'
 
 
 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+    <div id="output"></div>
+
+
+    <script>
+        // try doing this with jQuery
+
+        function capitalizeFirstLetter(string) {
+            return string[0].toUpperCase() + string.slice(1);
+        }
+
+        let formatRequest = (url, callback) => {
+            // fetch(url)
+            //     .then((res) => res.json())
+            //     .then((json) => callback(json))
+
+            // // use .get instead of .load to out put data to the console rather than to a named selector e.g. $.get(path, callback)
+            // $('#output').load('./ajax_lesson.json', function (res) {
+            // console.log(res)
+            // });
+
+            $.get(url, (res) => callback(res))
+        }
+
+        let createTable = (json) => {
+            let table = document.createElement('table')
+
+            let headerRow = () => {
+                let tableTitles = Object.keys(json[0])
+                let thead = document.createElement('thead')
+                let row = '<tr>'
+                for (title of tableTitles) row += `<th>${capitalizeFirstLetter(title)}</th>`
+                row += '</tr>'
+                thead.innerHTML = row
+                return thead
+            }
+
+            let dataRows = () => {
+                let tbody = document.createElement('tbody')
+                let rows = ''
+                for (person of json) {
+                    rows +=
+                        `<tr><td>${person.name}</td>
+                        <td>${person.age}</td>
+                        <td>${person.married ? 'Y' : 'N'}</td></tr>`
+                }
+                tbody.innerHTML = rows
+                return tbody
+            }
+
+            table.appendChild(headerRow())
+            table.appendChild(dataRows())
+            document.getElementById('output').appendChild(table)
+        }
+
+        formatRequest('./ajax_lesson.json', createTable)
+    </script>
+</body>
+
+
+</html>

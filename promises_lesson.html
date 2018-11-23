@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head> -->
+
+<body>
+
+
+    <script>
+        // let mediaDevices = navigator.mediaDevices
+        // mediaDevices.enumerateDevices().then((res) => console.log(res.map(device => device.kind)))
+
+        function testNum(num) {
+            return new Promise(function (resolve, reject) {
+                if (num < 10) {
+                    resolve('number is less than 10')
+                } else {
+                    reject('number is greater than or equal to 10')
+                }
+            })
+        }
+
+        testNum(15).then(function (result) {
+            console.log(result)
+        }, function (err) {
+            console.log(err)
+        })
+    </script>
+</body>
+
+</html>
