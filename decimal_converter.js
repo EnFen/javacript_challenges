@@ -1,5 +1,5 @@
 function convertDigit(number) {
-    let digits = ['A', 'B', 'C', 'D', 'E', 'F']
+    let digits = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     if (number >= 10) {
         number = digits[number - 10]
     }
@@ -18,5 +18,4 @@ function decimalConverter(decimal_number, base) {
     return result.join("")
 }
 
-console.log(decimalConverter(31, 12))
-// console.log(convertDigit(6))
+console.log(decimalConverter(4, 2))
