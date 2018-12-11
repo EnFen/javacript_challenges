@@ -1,0 +1,26 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "Node class test package",
+  "main": "node_lesson.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnFen/javacript_challenges.git"
+  },
+  "author": "Nathan Fenimore",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EnFen/javacript_challenges/issues"
+  },
+  "homepage": "https://github.com/EnFen/javacript_challenges#readme",
+  "dependencies": {
+    "capitalize-first-letter": "^1.0.0",
+    "upper-case": "^1.1.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}
